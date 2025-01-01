@@ -1,55 +1,228 @@
 <!DOCTYPE html>
-<html lang="tr">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tercih Sistemi</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Tercih Sitesi</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #fff;
+            color: #333;
+        }
+        h1, h2 {
+            color: #ffc107; /* Sarı */
+            text-align: center;
+        }
+         h2{
+             margin-top: 30px;
+         }
+        form {
+            margin-bottom: 20px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            padding: 20px;
+            border: 1px solid #ddd;
+            background-color: #f9f9f9;
+            border-radius: 8px;
+        }
+        .form-group {
+            margin-bottom: 10px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: #333;
+            font-weight: bold;
+        }
+        input[type="text"], input[type="password"], input[type="number"], select {
+            width: calc(100% - 18px);
+            padding: 8px;
+            border: 1px solid #ddd;
+             border-radius: 4px;
+             box-sizing: border-box;
+        }
+        button {
+             padding: 10px 15px;
+             background-color: #ffc107;
+             color: #000;
+             border: none;
+             cursor: pointer;
+             border-radius: 4px;
+             margin-top: 10px;
+             display: block;
+             width: 100%;
+             box-sizing: border-box;
+         }
+        button:hover {
+            background-color: #d49e00; /* Koyu Sarı */
+        }
+        .tercih-liste, .kadro-liste {
+            margin-top: 20px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+             padding: 20px;
+            border: 1px solid #ddd;
+            background-color: #f9f9f9;
+            border-radius: 8px;
+        }
+        .tercih-liste ul, .kadro-liste ul {
+            padding-left: 20px;
+            list-style-type: none;
+        }
+        .tercih-liste li, .kadro-liste li {
+             margin-bottom: 5px;
+             padding: 8px;
+            border-bottom: 1px solid #eee;
+        }
+         .tercih-liste li:last-child, .kadro-liste li:last-child {
+              border-bottom: none;
+          }
+       .kadro-liste a {
+           color: #000; /* Siyah */
+           text-decoration: none;
+           display: block;
+       }
+        .kadro-liste a:hover {
+           color: #d49e00; /* Koyu Sarı */
+        }
+        @media (max-width: 768px) {
+          form, .tercih-liste, .kadro-liste {
+                padding: 15px;
+                 margin-left: 10px;
+                 margin-right: 10px;
+             }
+           input[type="text"], input[type="password"], input[type="number"], select {
+              width: calc(100% - 12px);
+             }
+          button {
+               width: 100%;
+          }
+
+         }
+    </style>
 </head>
 <body>
-    <div class="container">
-        <!-- Kullanıcı İşlemleri Bölümü -->
-        <div class="user-section">
-            <h2>Kullanıcı İşlemleri</h2>
-            <input type="text" id="name" placeholder="Ad Soyad">
-            <input type="password" id="password" placeholder="Şifre">
-            <input type="number" id="servicePoint" placeholder="Hizmet Puanı">
-            <div class="button-group">
-                <button id="registerBtn">Kaydol</button>
-                <button id="loginBtn">Giriş Yap</button>
-                <button id="updatePointBtn">Puan Güncelle</button>
-                <button id="deleteUserBtn">Kullanıcı Sil</button>
-            </div>
-            <div id="userMessage" class="message"></div>
-        </div>
 
-        <!-- Tercih Yapma Bölümü -->
-        <div class="preference-section" id="munhaller-div">
-            <h2>Tercih Yap</h2>
-            <input type="text" id="personName" placeholder="Kişi Adı" readonly>
-            <input type="text" id="personServicePoint" placeholder="Kişi Hizmet Puanı" readonly>
-           
-            <ul class="munhaller-list" id="munhaller-list">
-               
-            </ul>
-             <div class="button-group">
-                <button id="sendPreferencesBtn">Tercihlerini Gönder</button>
-                <button id="clearAllPreferencesBtn">Tüm Tercihleri Sil</button>
+    <h1>Tercih Sitesi</h1>
+     {% if mesaj %}
+        <p style="color: red; text-align: center">{{ mesaj }}</p>
+    {% endif %}
+
+    <!-- Birinci Bölüm: Kayıt İşlemleri -->
+    <h2>Kayıt İşlemleri</h2>
+    <form method="post">
+        <input type="hidden" name="form_type" value="kaydol">
+        <div class="form-group">
+            <label for="ad_soyad">Ad Soyad:</label>
+            <input type="text" id="ad_soyad" name="ad_soyad" required>
+        </div>
+        <div class="form-group">
+            <label for="sifre">Şifre:</label>
+            <input type="password" id="sifre" name="sifre" required>
+        </div>
+        <div class="form-group">
+            <label for="hizmet_puani">Hizmet Puanı:</label>
+            <input type="number" id="hizmet_puani" name="hizmet_puani" required>
+        </div>
+        <button type="submit">Kaydol</button>
+    </form>
+
+    <!-- Giriş Formu -->
+    <h2>Giriş Yap</h2>
+      <form method="post">
+        <input type="hidden" name="form_type" value="giris">
+           <div class="form-group">
+               <label for="giris_sifre">Şifre:</label>
+               <input type="password" id="giris_sifre" name="giris_sifre" required>
+           </div>
+          <button type="submit">Giriş Yap</button>
+      </form>
+    {% if kullanici_id %}
+      <!-- Puan Güncelleme Formu -->
+      <h2>Puan Güncelle</h2>
+        <form method="post">
+          <input type="hidden" name="form_type" value="guncelle">
+          <div class="form-group">
+              <label for="guncel_hizmet_puani">Ad Soyad:</label>
+                <input type="text" id="guncel_ad_soyad" value="{{ ad_soyad }}" disabled>
              </div>
-        </div>
-
-        <!-- Tercihleri İnceleme Bölümü -->
-        <div class="review-section">
-            <h2>Tercihleri İncele</h2>
-             <div class="button-group">
-                <button id="updateViewBtn">Görünümü Güncelle</button>
+            <div class="form-group">
+                <label for="guncel_hizmet_puani">Hizmet Puanınız:</label>
+                <input type="number" id="guncel_hizmet_puani" name="guncel_hizmet_puani" value="{{ hizmet_puani }}" required>
             </div>
-            <ul class="review-list" id="review-list">
-              
-            </ul>
-        </div>
+            <button type="submit">Puan Güncelle</button>
+        </form>
+      <!-- Kayıt Silme Formu -->
+          <h2>Kayıt Sil</h2>
+             <form method="post">
+               <input type="hidden" name="form_type" value="kayit_sil">
+                <div class="form-group">
+                     <label for="sil_sifre">Şifre:</label>
+                     <input type="password" id="sil_sifre" name="sil_sifre" required>
+                </div>
+               <button type="submit">Kayıdı Sil</button>
+             </form>
+    {% endif %}
+    <!-- İkinci Bölüm: Tercih İşlemleri -->
+    <h2>Tercih İşlemleri</h2>
+    {% if kullanici_id %}
+        <p style="text-align: center">Şimdi tercih ekleyebilirsiniz:</p>
+
+        <form method="post">
+          <input type="hidden" name="form_type" value="tercih_ekle">
+             <div class="form-group">
+                 <label for="tercih">Tercih Yap:</label>
+                  <select id="tercih" name="tercih" required>
+                      {% for kadro in kadrolar %}
+                          <option value="{{ kadro }}">{{ kadro }}</option>
+                      {% endfor %}
+                  </select>
+             </div>
+              <button type="submit">Tercih Ekle</button>
+        </form>
+          <form method="post">
+            <input type="hidden" name="form_type" value="tercih_guncelle">
+            <div class="form-group">
+                 <label for="tercih_sirasi_guncel">Güncellenecek Tercih Sırası:</label>
+                 <input type="number" id="tercih_sirasi_guncel" name="tercih_sirasi_guncel" required>
+             </div>
+            <div class="form-group">
+                 <label for="yeni_tercih">Yeni Tercih:</label>
+                   <select id="yeni_tercih" name="yeni_tercih" required>
+                        {% for kadro in kadrolar %}
+                            <option value="{{ kadro }}">{{ kadro }}</option>
+                        {% endfor %}
+                    </select>
+            </div>
+            <button type="submit">Tercih Güncelle</button>
+         </form>
+
+    {% else %}
+      <p style="text-align: center">Tercih yapmak için giriş yapınız</p>
+    {% endif %}
+
+    <div class="tercih-liste">
+        <h2>Tercih Listesi</h2>
+        <ul>
+            {% for tercih in kullanici_tercihleri %}
+                <li>{{ tercih.tercih_sirasi }}. Tercih: {{ tercih.kadro }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+    <!-- Üçüncü Bölüm: Detaylı Tercih Listesi -->
+    <h2>Kadro Detayları</h2>
+    <div class="kadro-liste">
+        <ul>
+            {% for kadro in kadrolar %}
+                <li><a href="/kadro_detay/{{ kadro }}">{{ kadro }}</a></li>
+            {% endfor %}
+        </ul>
     </div>
 
-    <script src="script.js"></script>
 </body>
 </html>

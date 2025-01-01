@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kadro Detayları</title>
+    <style>
+      body {
+          font-family: sans-serif;
+          margin: 0;
+          padding: 20px;
+          background-color: #fff;
+          color: #333;
+      }
+      h2 {
+         color: #ffc107;
+         text-align: center;
+         margin-bottom: 20px;
+      }
+        table {
+            border-collapse: collapse;
+            width: 95%;
+            margin: 0 auto;
+            border: 1px solid #ddd;
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+         }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+            font-weight: bold;
+        }
+        tr:nth-child(even) {
+             background-color: #f2f2f2;
+         }
+       a {
+           display: block;
+           text-align: center;
+           margin-top: 20px;
+           color: #000;
+           text-decoration: none;
+           padding: 10px 15px;
+           background-color: #ffc107;
+           border-radius: 4px;
+           width: fit-content;
+            margin-left: auto;
+            margin-right: auto;
+        }
+         a:hover {
+          background-color: #d49e00;
+          color: #000;
+         }
+        @media (max-width: 768px) {
+             table {
+                 width: 98%;
+
+             }
+             th, td {
+                  padding: 10px;
+                 font-size: 0.9em;
+              }
+           }
+    </style>
+</head>
+<body>
+
+    <h2>{{ kadro }} Kadrosuna Başvuranlar</h2>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Ad Soyad</th>
+                <th>Hizmet Puanı</th>
+                <th>Tercih Sırası</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for basvuran in tercih_edenler %}
+                <tr>
+                    <td>{{ basvuran.ad_soyad }}</td>
+                    <td>{{ basvuran.hizmet_puani }}</td>
+                    <td>{{ basvuran.tercih_sirasi }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <a href="/">Geri</a>
+</body>
+</html>
