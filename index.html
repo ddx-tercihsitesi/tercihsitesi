@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tercih Sistemi</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Kullanıcı İşlemleri Bölümü -->
+        <div class="user-section">
+            <h2>Kullanıcı İşlemleri</h2>
+            <input type="text" id="name" placeholder="Ad Soyad">
+            <input type="password" id="password" placeholder="Şifre">
+            <input type="number" id="servicePoint" placeholder="Hizmet Puanı">
+            <div class="button-group">
+                <button id="registerBtn">Kaydol</button>
+                <button id="loginBtn">Giriş Yap</button>
+                <button id="updatePointBtn">Puan Güncelle</button>
+                <button id="deleteUserBtn">Kullanıcı Sil</button>
+            </div>
+            <div id="userMessage" class="message"></div>
+        </div>
+
+        <!-- Tercih Yapma Bölümü -->
+        <div class="preference-section" id="munhaller-div">
+            <h2>Tercih Yap</h2>
+            <input type="text" id="personName" placeholder="Kişi Adı" readonly>
+            <input type="text" id="personServicePoint" placeholder="Kişi Hizmet Puanı" readonly>
+           
+            <ul class="munhaller-list" id="munhaller-list">
+               
+            </ul>
+             <div class="button-group">
+                <button id="sendPreferencesBtn">Tercihlerini Gönder</button>
+                <button id="clearAllPreferencesBtn">Tüm Tercihleri Sil</button>
+             </div>
+        </div>
+
+        <!-- Tercihleri İnceleme Bölümü -->
+        <div class="review-section">
+            <h2>Tercihleri İncele</h2>
+             <div class="button-group">
+                <button id="updateViewBtn">Görünümü Güncelle</button>
+            </div>
+            <ul class="review-list" id="review-list">
+              
+            </ul>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
